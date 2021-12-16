@@ -1,4 +1,4 @@
-import 'package:app_pokedex/PokeDetailPage.dart';
+import 'package:app_pokedex/view/PokeDetailPage.dart';
 import 'package:app_pokedex/Pokemon.dart';
 import 'package:flutter/material.dart';
 
