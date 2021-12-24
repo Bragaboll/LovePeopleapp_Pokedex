@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:app_pokedex/Pokemon.dart';
-import 'package:app_pokedex/presenter/Pokemonwidget.dart';
+import 'package:app_pokedex/presenter/pokemonwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

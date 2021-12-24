@@ -31,7 +31,6 @@ class PokeDetailPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Stack(
-                          alignment: Alignment.topCenter,
                           children: [
                             Padding(
                               padding: const EdgeInsets.all(10.0),
@@ -40,10 +39,10 @@ class PokeDetailPage extends StatelessWidget {
                                 child: Text('#${item.number}'),
                               ),
                             ),
-                            Image.network(
-                              item.thumbnailImage,
-                              height: 250,
-                              width: 150,
+                            Center(
+                              child: Image.network(
+                                item.thumbnailImage,
+                              ),
                             ),
                           ],
                         ),
