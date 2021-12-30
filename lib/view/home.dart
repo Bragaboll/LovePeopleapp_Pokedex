@@ -1,8 +1,8 @@
-import 'dart:convert';
-import 'package:app_pokedex/Pokemon.dart';
+import 'package:app_pokedex/model/pokemon.dart';
+import 'package:app_pokedex/presenter/home_controller.dart';
 import 'package:app_pokedex/presenter/pokemonwidget.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -15,9 +15,9 @@ class _HomeState extends State<Home> {
   bool loading = false;
 
   @override
-  void initState() {
-    carregarPokemon();
-    super.initState();
+  void didChangeDependencies() {
+    context.read<HomeController>().loadPokemon();
+    super.didChangeDependencies();
   }
 
   @override
@@ -33,40 +33,16 @@ class _HomeState extends State<Home> {
         ],
         title: Text('Pokedex'),
       ),
-      body: Stack(
-        children: [
-          ListView.builder(
-            itemCount: pokemonList.length,
+      body: Consumer<HomeController>(
+        builder: (_, controller, child) {
+          return ListView.builder(
+            itemCount: controller.pokemonList.length,
             itemBuilder: (context, index) {
-              return PokemonWidget(
-                item: pokemonList[index],
-              );
+              return PokemonWidget(item: controller.pokemonList[index]);
             },
-          ),
-          if (loading) Center(child: CircularProgressIndicator()),
-        ],
+          );
+        },
       ),
     );
-  }
-
-  void carregarPokemon() {
-    setState(() {
-      loading = true;
-    });
-    var url = Uri.parse('http://104.131.18.84/pokemon/?limit=50&page=0');
-
-    http.get(url).then((response) {
-      if (response.statusCode == 200) {
-        Map json = JsonDecoder().convert(response.body);
-        setState(() {
-          pokemonList = json['data'].map<Pokemon>((item) {
-            return Pokemon.fromJson(item);
-          }).toList();
-        });
-      }
-      setState(() {
-        loading = false;
-      });
-    });
   }
 }
