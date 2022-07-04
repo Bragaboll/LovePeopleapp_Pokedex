@@ -10,10 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Pokemon> pokemonList = [];
-
-  bool loading = false;
-
   @override
   void didChangeDependencies() {
     context.read<HomeController>().loadPokemon();
@@ -35,11 +31,19 @@ class _HomeState extends State<Home> {
       ),
       body: Consumer<HomeController>(
         builder: (_, controller, child) {
-          return ListView.builder(
-            itemCount: controller.pokemonList.length,
-            itemBuilder: (context, index) {
-              return PokemonWidget(item: controller.pokemonList[index]);
-            },
+          return Stack(
+            children: [
+              ListView.builder(
+                itemCount: controller.pokemonList.length,
+                itemBuilder: (context, index) {
+                  return PokemonWidget(item: controller.pokemonList[index]);
+                },
+              ),
+              if (controller.loading)
+                Center(
+                  child: CircularProgressIndicator(),
+                ),
+            ],
           );
         },
       ),
