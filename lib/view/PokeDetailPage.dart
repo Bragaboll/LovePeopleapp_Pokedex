@@ -16,7 +16,6 @@ class PokeDetailPage extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Card(
-              margin: EdgeInsets.all(10),
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -55,6 +54,9 @@ class PokeDetailPage extends StatelessWidget {
                     ),
                     SizedBox(
                       height: 20,
+                    ),
+                    Divider(
+                      color: Colors.grey,
                     ),
                     Text(
                       'Tipo:',

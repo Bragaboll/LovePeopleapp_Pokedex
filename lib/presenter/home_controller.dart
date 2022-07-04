@@ -11,9 +11,11 @@ class HomeController extends ChangeNotifier {
   bool loading = false;
 
   void loadPokemon() {
+    loading = true;
     _repository.load().then((value) {
       pokemonList = value;
       notifyListeners();
+      loading = false;
     });
   }
 }

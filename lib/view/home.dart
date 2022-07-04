@@ -1,6 +1,6 @@
 import 'package:app_pokedex/model/pokemon.dart';
 import 'package:app_pokedex/presenter/home_controller.dart';
-import 'package:app_pokedex/presenter/pokemonwidget.dart';
+import 'package:app_pokedex/view/pokemonwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
